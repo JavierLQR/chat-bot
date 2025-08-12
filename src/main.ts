@@ -35,9 +35,7 @@ async function bootstrap() {
   )
   const PORT = process.env.PORT ?? 4000
   await app.listen(PORT, () =>
-    console.log(`Application is running on: http://localhost:${PORT}`),
+    console.log(`Application is running on: http://localhost:${PORT} 🚀`),
   )
 }
-bootstrap()
-  .then(() => console.log('Application started successfully 🚀'))
-  .catch((error) => console.error('Error starting NestJS application:', error))
+void bootstrap().catch(console.error)
