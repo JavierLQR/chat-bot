@@ -2,8 +2,5 @@ import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class AuthService {
-  /**
-   * autenticacion
-   */
-  public async autentication() {}
+  constructor(private readonly pusherService: PusherService) {}
 }
