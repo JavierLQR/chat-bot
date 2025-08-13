@@ -32,6 +32,7 @@
     "class-validator": "^0.14.2",
     "mongoose": "^8.17.1",
     "nestjs-prisma": "^0.25.0",
+    "pusher": "^5.2.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
