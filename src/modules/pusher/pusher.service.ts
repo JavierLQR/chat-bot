@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import * as Pusher from 'pusher'
+import { AuthPusherDto } from './dto/auth-pusher.dto'
 
 @Injectable()
 export class PusherService {
@@ -16,8 +17,21 @@ export class PusherService {
     })
   }
 
+  private typeChannel(channel: string): 'presence' | 'private' | 'public' {
+    const recordChannel: Record<string, 'presence' | 'private' | 'public'> = {
+      'presence-': 'presence',
+      'private-': 'private',
+      'public-': 'public',
+    }
+    return recordChannel[channel.split('-')[0] + '-'] || 'public'
+  }
+
   /**
    * autenticacion
    */
-  public async autentication() {}
+  public autentication(authPusherDto: AuthPusherDto) {
+    const { channel, socketId } = authPusherDto
+    const { auth } = this.pusher.authorizeChannel(socketId, channel)
+    return auth
+  }
 }
