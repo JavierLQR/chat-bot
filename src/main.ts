@@ -33,9 +33,10 @@ async function bootstrap() {
       errorHttpStatusCode: 422,
     }),
   )
+
   const PORT = process.env.PORT ?? 4000
-  await app.listen(PORT, () =>
-    console.log(`Application is running on: http://localhost:${PORT} 🚀`),
-  )
+  await app.listen(PORT)
+  const url = await app.getUrl()
+  console.log(`Application is running on: URL: ${url}`)
 }
 void bootstrap().catch(console.error)
