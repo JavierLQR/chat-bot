@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { PusherService } from '../pusher/pusher.service'
+import { AuthPusherDto } from '../pusher/dto/auth-pusher.dto'
 
 @Injectable()
 export class AuthService {
@@ -8,5 +9,7 @@ export class AuthService {
   /**
    * autenticacion
    */
-  public async autentication() {}
+  public autentication(authPusherDto: AuthPusherDto) {
+    return this.pusherService.autentication(authPusherDto)
+  }
 }
