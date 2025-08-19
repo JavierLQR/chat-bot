@@ -1,6 +1,8 @@
-import { Injectable } from '@nestjs/common'
+import { HttpStatus, Injectable } from '@nestjs/common'
+
 import { PusherService } from '../pusher/pusher.service'
 import { AuthPusherDto } from '../pusher/dto/auth-pusher.dto'
+import ApiResponse from 'src/common/utils/response.client'
 
 @Injectable()
 export class AuthService {
@@ -10,6 +12,15 @@ export class AuthService {
    * autenticacion
    */
   public autentication(authPusherDto: AuthPusherDto) {
-    return this.pusherService.autentication(authPusherDto)
+    const auth = this.pusherService.autentication(authPusherDto)
+
+    return ApiResponse({
+      message: 'Autentication for channel success',
+      data: {
+        auth,
+      },
+      service: PusherService.name,
+      statusCode: HttpStatus.OK,
+    })
   }
 }
