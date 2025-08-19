@@ -30,6 +30,10 @@ export class PusherService {
    * autenticacion
    */
   public autentication(authPusherDto: AuthPusherDto) {
+    console.log({
+      authPusherDto,
+    })
+
     const { channel, socketId } = authPusherDto
     const { auth } = this.pusher.authorizeChannel(socketId, channel)
     return auth
