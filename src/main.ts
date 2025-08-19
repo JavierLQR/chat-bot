@@ -10,7 +10,6 @@ async function bootstrap() {
   })
 
   app.enableCors({
-    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
   })
@@ -22,6 +21,8 @@ async function bootstrap() {
   )
 
   app.useGlobalFilters(new HttpExceptionFilter())
+
+  app.setGlobalPrefix('api-v1')
 
   app.useGlobalPipes(
     new ValidationPipe({
