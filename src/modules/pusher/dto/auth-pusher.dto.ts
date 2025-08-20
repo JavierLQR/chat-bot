@@ -9,5 +9,3 @@ export class AuthPusherDto {
   @IsString()
   channel: string
 }
-
-export class TriggerDto {}
