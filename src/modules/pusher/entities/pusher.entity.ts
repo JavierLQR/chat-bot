@@ -1,1 +1,7 @@
-export class Pusher {}
+export class TriggerDto {
+  channel: string
+
+  event: string
+
+  data: any
+}
