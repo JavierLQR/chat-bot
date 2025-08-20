@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import * as Pusher from 'pusher'
 
-import { AuthPusherDto, TriggerDto } from './dto/auth-pusher.dto'
+import { AuthPusherDto } from './dto/auth-pusher.dto'
+import { TriggerDto } from './entities/pusher.entity'
 
 @Injectable()
 export class PusherService {
@@ -30,9 +31,7 @@ export class PusherService {
   /**
    * trigger event to pusher
    */
-  public async trigger(triggerDto: TriggerDto) {
-    await this.pusher.trigger(channel, event)
-  }
+  public async trigger(triggerDto: TriggerDto) {}
 
   /**
    * autenticacion
