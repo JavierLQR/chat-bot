@@ -60,7 +60,7 @@ export class CreatePineconeIndexDto {
   name: string
 
   @IsEnum(VectorType)
-  vectorType: VectorType
+  vector_type: VectorType
 
   @IsNumber()
   @IsNotEmpty()
