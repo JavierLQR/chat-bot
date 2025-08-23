@@ -60,7 +60,7 @@ export class CreatePineconeIndexDto {
   name: string
 
   @IsEnum(VectorType)
-  vector_type: VectorType
+  vectorType: VectorType
 
   @IsNumber()
   @IsNotEmpty()
@@ -86,5 +86,5 @@ export class CreatePineconeIndexDto {
 
   @ValidateNested()
   @Type(() => TagsDto)
-  tags: Record<string, string>
+  tags: TagsDto
 }
