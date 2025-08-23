@@ -84,7 +84,6 @@ export class CreatePineconeIndexDto {
   })
   deletionProtection: DeletionProtection
 
-  @ValidateNested()
   @Type(() => TagsDto)
-  tags: TagsDto
+  tags: Record<string, string>
 }
