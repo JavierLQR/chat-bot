@@ -3,6 +3,8 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsObject,
+  IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator'
@@ -31,10 +33,6 @@ export enum TagsEnum {
 export enum Dimension {
   DEFAULT = 1024, // Default dimension for MistralAI embeddings
   EMBEDDING = 1536, // Dimension for OpenAI text-embedding-3-small
-}
-
-class TagsDto {
-  [key: string]: string
 }
 
 class TypeSpec {
@@ -84,6 +82,7 @@ export class CreatePineconeIndexDto {
   })
   deletionProtection: DeletionProtection
 
-  @Type(() => TagsDto)
+  @IsObject()
+  @IsOptional() // Si es opcional
   tags: Record<string, string>
 }

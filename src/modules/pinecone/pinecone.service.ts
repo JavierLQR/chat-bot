@@ -43,17 +43,17 @@ export class PineconeService {
       tags,
       vectorType,
     } = createPineconeIndexDto
-    this.logger.verbose('Creating Pinecone index...', createPineconeIndexDto)
+    this.logger.verbose('Creating Pinecone index...')
     try {
-      // await this.pinecone.createIndex({
-      //   name,
-      //   vectorType,
-      //   dimension,
-      //   metric,
-      //   spec,
-      //   deletionProtection,
-      //   tags,
-      // })
+      await this.pinecone.createIndex({
+        name,
+        vectorType,
+        dimension,
+        metric,
+        spec,
+        deletionProtection,
+        tags,
+      })
 
       return ApiResponse({
         message: 'Pinecone index created successfully',
