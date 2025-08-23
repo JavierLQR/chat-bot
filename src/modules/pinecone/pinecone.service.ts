@@ -14,6 +14,10 @@ export class PineconeService {
   private readonly pinecone: Pinecone
   private readonly logger: Logger = new Logger(PineconeService.name)
 
+  /**
+   * Constructor for the PineconeService class.
+   * @param configService - The ConfigService used to retrieve configuration values.
+   */
   constructor(private readonly configService: ConfigService) {
     this.pinecone = new Pinecone({
       apiKey: this.configService.getOrThrow<string>('PINECONE_API_KEY'),
@@ -23,6 +27,11 @@ export class PineconeService {
 
   /**
    * createIndex
+   * Creates a new Pinecone index with the provided specifications.
+   * @param createPineconeIndexDto - Data Transfer Object containing index specifications.
+   * @returns A promise that resolves to an ApiResponse indicating success or failure.
+   * @throws InternalServerErrorException if the index creation fails.
+   *
    */
   public async createIndex(createPineconeIndexDto: CreatePineconeIndexDto) {
     const {
