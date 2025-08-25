@@ -11,10 +11,6 @@ export class PineconeController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   createIndex(@Body() createPineconeIndexDto: CreatePineconeIndexDto) {
-    console.log({
-      createPineconeIndexDto,
-    })
-
     return this.pineconeService.createIndex(createPineconeIndexDto)
   }
 }
