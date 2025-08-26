@@ -14,35 +14,114 @@ model ProductsFoods {
   price       Float
   category    String
   imageUrl    String?
-  stock       Int      @default(0)
-  isAvailable Boolean  @default(true)
+  stock       Int      @default(0) // cantidad disponible
+  isAvailable Boolean  @default(true) // producto habilitado o no
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   // Relación con pedidos
-  // orderItems   OrderItem[]
+  // orderItems OrderItem[]
 }
 
-// model Order {
-//   id          Int          @id @default(autoincrement())
-//   customer    String       // cliente (luego podrías relacionarlo con un User)
-//   totalAmount Float
-//   status      String       @default("pending") // pending, paid, delivered
-//   createdAt   DateTime     @default(now())
-//   updatedAt   DateTime     @updatedAt
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  Product   Product[]
+}
 
-//   items       OrderItem[]
-// }
+model CategoryChatBot {
+  id             String           @id
+  name           String           @unique
+  ProductChatBot ProductChatBot[]
+}
 
-// model OrderItem {
-//   id         Int           @id @default(autoincrement())
-//   quantity   Int
-//   subtotal   Float
-//   createdAt  DateTime      @default(now())
+model ChatMessage {
+  id        String   @id
+  userId    String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
 
-//   // Relaciones
-//   productId  Int
-//   orderId    Int
-//   product    ProductsFoods @relation(fields: [productId], references: [id])
-//   order      Order         @relation(fields: [orderId], references: [id])
-// }
+  @@index([userId, createdAt])
+}
+
+model Interview {
+  id            String   @id
+  candidateName String
+  position      String
+  score         Int
+  createdAt     DateTime @default(now())
+  updateAt      DateTime
+
+  @@index([candidateName])
+  @@index([position])
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  imageUrl    String
+  categoryId  Int
+  createdAt   DateTime @default(now())
+  Category    Category @relation(fields: [categoryId], references: [id])
+}
+
+model ProductChatBot {
+  id              String          @id
+  name            String          @unique
+  description     String
+  price           Decimal         @db.Decimal(10, 2)
+  imageUrl        String
+  categoryId      String
+  createdAt       DateTime        @default(now())
+  stock           Int
+  updatedAt       DateTime
+  CategoryChatBot CategoryChatBot @relation(fields: [categoryId], references: [id])
+}
+
+model ProductIndex {
+  id          String   @id @db.Uuid
+  name        String
+  description String
+  price       Float
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+}
+
+model ProductosEmbeddings {
+  id       String @id
+  product  String
+  category String
+  price    String
+  size     String
+}
+
+model Products {
+  id       String @id
+  price    Int
+  category String
+}
+
+model Users {
+  id       String @id
+  username String @unique
+  password String
+}
+
+model langchain_chat_histories {
+  id         Int    @id @default(autoincrement())
+  session_id String @db.VarChar(255)
+  message    Json
+}
+
+model mitabladeprueba {
+  id        Int       @id @default(autoincrement())
+  nombre    String    @db.VarChar(100)
+  correo    String    @unique @db.VarChar(100)
+  edad      Int?
+  creado_en DateTime? @default(now()) @db.Timestamp(6)
+}
