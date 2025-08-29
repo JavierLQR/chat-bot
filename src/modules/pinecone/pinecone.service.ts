@@ -1,3 +1,4 @@
+// NestJS
 import {
   HttpStatus,
   Injectable,
@@ -5,7 +6,12 @@ import {
   Logger,
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+
+// Pinecone client
 import { Pinecone } from '@pinecone-database/pinecone'
+import { PineconeStore } from '@langchain/pinecone'
+
+// Utils
 import ApiResponse from 'src/common/utils/response.client'
 import { CreatePineconeIndexDto } from './dto/create-pinecone.dto'
 
@@ -70,5 +76,9 @@ export class PineconeService {
         },
       )
     }
+  }
+
+  public get PineconeStore() {
+    return PineconeStore
   }
 }
