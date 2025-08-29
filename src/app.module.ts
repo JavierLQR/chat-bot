@@ -4,6 +4,7 @@ import { PusherModule } from './modules/pusher/pusher.module'
 import { AuthModule } from './modules/auth/auth.module'
 import { PineconeModule } from './modules/pinecone/pinecone.module'
 import { ProductsModule } from './modules/products/products.module'
+import { LanchaingMitralModule } from './modules/lanchaing-mitral/lanchaing-mitral.module'
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ProductsModule } from './modules/products/products.module'
     AuthModule,
     PineconeModule,
     ProductsModule,
+    LanchaingMitralModule,
   ],
 })
 export class AppModule {}
