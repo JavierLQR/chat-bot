@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@langchain/core": "^0.3.72",
+    "@langchain/mistralai": "^0.2.1",
     "@langchain/openai": "^0.6.9",
     "@langchain/pinecone": "^0.2.0",
     "@nestjs/common": "^11.0.1",
