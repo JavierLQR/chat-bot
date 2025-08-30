@@ -14,7 +14,7 @@ export class LanchaingMitralService {
     })
   }
 
-  public get MistralAIEmbeddings() {
+  public get MistralAIEmbeddings(): MistralAIEmbeddings {
     return this.mistralAIEmbeddings
   }
 }
