@@ -15,7 +15,7 @@ export class ProductsService {
    * insertDataProductsFoods
    */
   public async insertDataProductsFoods() {
-    await this.PineconeStore.fromExistingIndex(
+    const store = await this.PineconeStore.fromExistingIndex(
       this.lanchaingMitralService.MistralAIEmbeddings,
       {
         namespace: 'products-foods',
@@ -23,6 +23,8 @@ export class ProductsService {
         maxConcurrency: 5,
       },
     )
+
+    store.addDocuments()
   }
 
   public get PineconeStore() {
