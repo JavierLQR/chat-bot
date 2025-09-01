@@ -24,7 +24,6 @@ export class ProductsService {
       },
     )
 
-    store.addDocuments()
   }
 
   public get PineconeStore() {
